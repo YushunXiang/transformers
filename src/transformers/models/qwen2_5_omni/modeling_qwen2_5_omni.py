@@ -124,7 +124,7 @@ class Qwen2_5OmniPreTrainedModel(PreTrainedModel):
             module.weight.data.fill_(1.0)
 
 
-class Qwen2_5OmniPreTrainedModelForConditionalGeneration(Qwen2_5OmniPreTrainedModel):
+class Qwen2_5OmniPreTrainedModelForConditionalGeneration(Qwen2_5OmniPreTrainedModel):    
     def _prepare_4d_causal_attention_mask_with_cache_position(
         self,
         attention_mask: torch.Tensor,
@@ -3874,6 +3874,9 @@ class Qwen2_5OmniForConditionalGeneration(Qwen2_5OmniPreTrainedModel, Generation
         if hasattr(self, "token2wav"):
             del self.token2wav
         self.has_talker = False
+
+    def get_image_features(self, pixel_values):
+        return self.thinker.get_image_features(pixel_values)
 
     @classmethod
     def from_pretrained(

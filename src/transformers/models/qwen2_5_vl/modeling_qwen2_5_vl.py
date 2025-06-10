@@ -1503,6 +1503,9 @@ class Qwen2_5_VLForConditionalGeneration(Qwen2_5_VLPreTrainedModel, GenerationMi
     def get_decoder(self):
         return self.model
 
+    def get_image_features(self, pixel_values):
+        return self.model.get_image_features(pixel_values)
+
     # Make modules available throught conditional class for BC
     @property
     def language_model(self):
